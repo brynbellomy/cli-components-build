@@ -1,6 +1,3 @@
-import '../build/index.d.ts'
-
-import * as asdf from 'cli-components-build'
 
 import * as fs from 'fs'
 import * as path from 'path'
@@ -73,12 +70,21 @@ var tsconfig = _.memoize(
  */
 function groupFiletypes (files: string[], extensions: string[]): GroupFiletypesResult
 {
-    const grouped = _.groupBy(files, (file) => {
+    let rest: string[] = []
+    let grouped = _.groupBy(files, (file) => {
         const ext = path.extname(file)
+        if (_.contains(extensions, ext)) {
+            return ext
+        }
+        else {
+            rest.push(file)
+            return null
+        }
         return _.contains(extensions, ext) ? ext : '__rest'
     })
-    const rest = grouped['__rest']
-    delete grouped['__rest']
+    for (const ext of extensions) {
+        grouped[ext] = grouped[ext] || []
+    }
     return { grouped, rest }
 }
 

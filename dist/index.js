@@ -1,4 +1,3 @@
-require('../build/index.d.ts');
 var fs = require('fs');
 var path = require('path');
 var $c = require('chalk');
@@ -40,12 +39,22 @@ exports.tsconfig = tsconfig;
     on the return value.
  */
 function groupFiletypes(files, extensions) {
+    var rest = [];
     var grouped = _.groupBy(files, function (file) {
         var ext = path.extname(file);
+        if (_.contains(extensions, ext)) {
+            return ext;
+        }
+        else {
+            rest.push(file);
+            return null;
+        }
         return _.contains(extensions, ext) ? ext : '__rest';
     });
-    var rest = grouped['__rest'];
-    delete grouped['__rest'];
+    for (var _i = 0; _i < extensions.length; _i++) {
+        var ext = extensions[_i];
+        grouped[ext] = grouped[ext] || [];
+    }
     return { grouped: grouped, rest: rest };
 }
 exports.groupFiletypes = groupFiletypes;
