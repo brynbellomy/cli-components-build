@@ -1,6 +1,6 @@
 {
   "name": "cli-components-build",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small set of tools for Makefiles/Gulpfiles/etc.",
   "main": "dist/index.js",
   "scripts": {
