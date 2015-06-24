@@ -1,0 +1,21 @@
+{
+  "name": "cli-components-build",
+  "version": "1.0.0",
+  "description": "Small set of tools for Makefiles/Gulpfiles/etc.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "authors": [
+    "bryn austin bellomy <bryn.bellomy@gmail.com>"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "tsd": "^0.6.1",
+    "typescript": "^1.5.0-beta"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "lodash": "^3.9.3"
+  }
+}
