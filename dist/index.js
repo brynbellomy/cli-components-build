@@ -103,4 +103,13 @@ function header(text) {
     return [stars, text, stars].join(' ');
 }
 exports.header = header;
+/**
+    Creates a simple error handler that reports the given `stage` in addition to the error.  Useful in gulp pipelines.
+ */
+function errorHandler(stage) {
+    return function (err) {
+        console.error("Error [" + stage + "]:", $c.red(err));
+    };
+}
+exports.errorHandler = errorHandler;
 //# sourceMappingURL=index.js.map

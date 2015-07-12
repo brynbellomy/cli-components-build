@@ -19,7 +19,7 @@ clean:
 	rm -rf build
 
 $(BUILD_DIR)/%.js: $(SOURCES)
-	tsc -p .
+	ntsc -p .
 	mkdir -p dist
 	cp build/*.js     dist/
 	cp build/*.js.map dist/

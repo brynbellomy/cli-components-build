@@ -61,5 +61,9 @@ declare module CliComponentsBuildModule
         Colorizes and formats a simple "header" kind of thing.  You can surround text in asterisks to apply a highlight.  For example: "Installing *someprogram* version *1.0*"
      */
     export function header(text: any): string;
+    /**
+        Creates a simple error handler that reports the given `stage` in addition to the error.  Useful in gulp pipelines.
+     */
+    export function errorHandler (stage: string);
 }
 

@@ -8,6 +8,7 @@ export {
     mtime,
     header,
     tsconfig,
+    errorHandler,
     groupFiletypes,
     isUnminifiedJS,
     prettyExecResult,
@@ -143,16 +144,23 @@ function prettyTSifyCompileError (err: TSifyCompileError) {
 /**
     Colorizes and formats a simple "header" kind of thing.  You can surround text in asterisks to apply a highlight.  For example: "Installing *someprogram* version *1.0*"
  */
-function header (text) {
+function header (text: string) {
     const matches = text.match(/\*[^\*]+\*/g)
     matches.forEach(function (match) {
         const extracted = match.replace(/(^\*)|(\*$)/g, '')
-        text = text.replace(match, $c.white.bold(extracted))
+        text = text.replace(match, $c.white.bold(extracted) as any)
     })
     const stars = $c.yellow('***')
     return [stars, text, stars].join(' ')
 }
 
-
+/**
+    Creates a simple error handler that reports the given `stage` in addition to the error.  Useful in gulp pipelines.
+ */
+function errorHandler (stage: string) {
+    return function (err) {
+        console.error(`Error [${stage}]:`, $c.red(err))
+    }
+}
 
 
